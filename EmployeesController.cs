@@ -21,7 +21,6 @@ namespace WebApplication1.Controllers
         }
         static private string GetConnectionString()
         {
-
             return "Data Source=DESKTOP-E6QPTVT;Initial Catalog=EPATEC;"
                 + "Integrated Security=true;";
         }
@@ -53,17 +52,33 @@ namespace WebApplication1.Controllers
                 emp = new Employee();
                 emp.E_ID = Convert.ToInt32(reader.GetValue(0));
                 emp.CName = reader.GetValue(1).ToString();
+                emp.LName = reader.GetValue(2).ToString();
+                emp.CAddress = reader.GetValue(3).ToString();
+                emp.Charge = reader.GetValue(4).ToString();
 
             }
             return emp;
             myConnection.Close();
         }
-
-        [HttpPost]
-        public void AddEmployee([FromBody]int e_id,[FromBody]string cname)
+        [ActionName("DeleteEmployee")]
+        public void DeleteEmployeeByID(int id)
         {
-            System.Diagnostics.Debug.WriteLine(e_id);
-            System.Diagnostics.Debug.WriteLine(cname);
+            SqlConnection myConnection = new SqlConnection();
+            myConnection.ConnectionString =GetConnectionString();
+
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.CommandText = "DELETE FROM EMPLOYEE WHERE E_ID=" + id + "";
+            sqlCmd.Connection = myConnection;
+            myConnection.Open();
+            int rowDeleted = sqlCmd.ExecuteNonQuery();
+            myConnection.Close();
+        }
+        [HttpPost]
+        public void AddEmployee(Employee employee)
+        {
+            System.Diagnostics.Debug.WriteLine(employee.E_ID);
+            System.Diagnostics.Debug.WriteLine(employee.CName);
             System.Diagnostics.Debug.WriteLine("entrando al post");
 
             SqlConnection myConnection = new SqlConnection();
@@ -72,12 +87,15 @@ namespace WebApplication1.Controllers
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
 
-            sqlCmd.CommandText = "INSERT INTO EMPLOYEE(E_ID,CName) Values(@e_id,@cname)";
+            sqlCmd.CommandText = "INSERT INTO EMPLOYEE(E_ID,CName,LName,CAddress,Charge) Values(@E_ID,@CName,@LName,@CAddress,@Charge)";
             System.Diagnostics.Debug.WriteLine("generando comando");
 
             sqlCmd.Connection = myConnection;
-            sqlCmd.Parameters.AddWithValue("@e_id", e_id);
-            sqlCmd.Parameters.AddWithValue("@cname", cname);
+            sqlCmd.Parameters.AddWithValue("@E_ID", employee.E_ID);
+            sqlCmd.Parameters.AddWithValue("@CName", employee.CName);
+            sqlCmd.Parameters.AddWithValue("@LName", employee.LName);
+            sqlCmd.Parameters.AddWithValue("@CAddress", employee.CAddress);
+            sqlCmd.Parameters.AddWithValue("@Charge", employee.Charge);
             myConnection.Open();
             int rowInserted = sqlCmd.ExecuteNonQuery();
             myConnection.Close();
