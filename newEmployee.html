@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+        <script src="angular-1.5.8/angular.js"></script>
+        <script src="angular-1.5.8/angular.min.js"></script>
+        <script src="angular-1.5.8\angular-route.js"></script>
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "newEmployee.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="newEmployee.css">
+        <link rel="stylesheet" href="fontello.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Employee</title>
+        <meta name="description" content="Employees">
+      
+        
+        
+    </head>
+    
+
+    
+    
+    
+    <body>
+       <div ng-app="orders" >
+        <form ng-controller="orderFormCtrl"  >
+          
+            <h1>EMPLOYEE</h1>
+            <input type="text" name="Name" ng-model="name" placeholder="Name">
+            <input type="number" name="ID" ng-model="id" placeholder="ID">
+            <input type="text" name="Address" ng-model="address" placeholder="Address">  
+            <b>Charge:</b> <select name = "Charge" ><option>Dependiente</option><option>Manager</option><option>Administrator</option></select>
+
+            
+            <a ng-click="addEmployee()" class="btn btn-primary btn-xs" >Add Employee</a>
+            <a ng-click="searchEmployee()" class="btn btn-primary btn-xs" >Search Employee</a>
+            <h2>Employee<span class= "icon-tag"></span></h2>
+            
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Charge</th>
+             
+                   
+                    <!--<th>Department</th>-->
+                    <th>Update</th>
+                    <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in Order | orderBy:'CName'">
+                            <td contenteditable='true'>{{item.E_ID}}</td>
+                            <td contenteditable='true'>{{item.CName}}</td>
+                            <td contenteditable='true'>{{item.LName}}</td>
+                            <td contenteditable='true'>{{item.CAddress}}</td>
+                            <td contenteditable='true'>{{item.Charge}}</td>
+                            
+                           
+                            <td><a class="btn btn-primary btn-xs" href="#/EditEmployee/{{item.EmployeeID}}">
+                                        <span class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td><a class="btn btn-danger btn-xs" href="#/DeleteEmployee/{{item.EmployeeID}}">
+                                        <span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+<!--
+                <h1>EPATEC</h1>
+                <input type="text" name="Client" ng-model="name" placeholder="Cliente ID">
+                <input type="number" name="Phone" ng-model="phone" placeholder="Favorite Phone">
+                <input type="number" name="Priority" ng-model="priority" placeholder="Priority">
+                <input type="text" name="Status" `-model="status" placeholder="Status">
+                <input type="date" name="Date"  ng-model="date" placeholder="Date">
+    
+                  <div class="list-group">
+                    <h2> PRODUCTS </h2>
+                        <select multiple class="form-control">
+                          <option class="list-group-item ">Martillo</option>
+                          <option class="list-group-item ">Desato</option>
+                          <option class="list-group-item ">Parches</option>
+                          <option class="list-group-item ">Latas</option>
+                          <option class="list-group-item ">Pintura</option>
+                        </select>
+
+                  </div>
+
+                <ul>
+                    <li ng-repeat="products">
+                      <input type="number" ng-model="amountProduct" aria-labelledby="select_{{$index}}" />
+                      <button ng-click="removeProduct(product)" aria-label="Remove">X</button>
+                    </li>
+                    <li><button ng-click="addProduct()">add</button></li>
+
+                <button ng-click="sendOrder()">Send</button>
+                               </ul>
+ -->
+
+            </form>
+        </div>
+       
+        
+
+
+    </body>
+</html>
