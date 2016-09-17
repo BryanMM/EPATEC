@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">EPATECMovil</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="register_action"><u>"Register"</u></string>
+    <string name="name">Name</string>
+    <string name="NewC">Become a New Client</string>
+    <string name="Log"><u>Log In</u></string>
+    <string name="email">Email</string>
+    <string name="Name">Name</string>
+    <string name="Password">Password</string>
+    <string name="confp">Repeat password</string>
+    <string name="ced">ID Number</string>
+    <string name="addrr">Address</string>
+    <string name="bdate">Birth Date</string>
+    <string name="phone">Telephone number</string>
+    <string name="Register">Register</string>
+    <string name="alclient">Already a client?</string>
+</resources>
