@@ -1,0 +1,52 @@
+<html>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angular-1.5.8\angular-route.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>EPATECWEB</title>
+        <meta name="description" content="Registracion de clientes.">
+        <link rel="stylesheet" href="newClient.css">
+        <link rel="stylesheet" href="fontello.css">
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "newClient.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        
+    </head>
+    
+
+    
+    
+    
+    <body>
+       <div ng-app="client" >
+        <form ng-controller="clientFormCtrl"  >
+            <h2>REGISTER CLIENT</h2>
+            <input type="text" name="Name" ng-model="name" placeholder="Name">
+            <input type="text" name="LastName" ng-model="lastname" placeholder="Last Name ">
+            <input type="number" min="0" name="ClientID" ng-model="clientid" placeholder="ID">
+            <input type="number" min="0" name="Phone" ng-model="phone" placeholder="Phone Number">
+           
+            <input type="text" name="Address" ng-model="address" placeholder="Address">
+             <b>Birth Date : </b><input type="date" name="BirthDate" ng-model="birthdate" placeholder="Birth Date">
+            
+            <h3><button type="button" ng-click="addClient()"  class="btn btn-default" >Sign Up</button></h3>
+         
+        
+            
+            <br /><br />
+          
+            
+
+
+            </form>
+        </div>
+       
+        
+
+
+    </body>
+</html>

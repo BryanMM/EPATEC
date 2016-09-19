@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+        <script src="angular-1.5.8/angular.js"></script>
+        <script src="angular-1.5.8/angular.min.js"></script>
+        <script src="angular-1.5.8\angular-route.js"></script>
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "product.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="product.css">
+        <link rel="stylesheet" href="fontello.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Product</title>
+        <meta name="description" content="Products">
+      
+        
+        
+    </head>
+    
+
+    
+    
+    
+    <body>
+       <div ng-app="products" >
+        <form ng-controller="productFormCtrl"  >
+          
+            <h2>PRODUCT</h2>
+            <input type="text" name="Name" ng-model="name" placeholder="Name">
+            <input type="number" min="0" name="ID" ng-model="id" placeholder="ID">
+            <input type="number" min="0" name="Price" ng-model="price" placeholder="Price">
+            <input type="number" min="0" name="Quantity" ng-model="quantity" placeholder="Quantity">
+            <input type="text" name="Extent" ng-model="extent" placeholder="Extent">
+            <input type="text" name="Description" ng-model="description" placeholder="Description">
+            <input type="number" min="0" name="ProveedorID" ng-model="proveedorid" placeholder="Proveedor ID">
+            
+            <b>Sucursal:</b> <select name = "SucursalID" ng-model="sucursalid" placeholder="Select a Sucursal" ><option ng-repeat="item in sucursal">{{item.S_ID}}</option></select>
+            <b>Category:</b> <select name = "Category" ng-model="category" placeholder="Select a Category" ><option ng-repeat="item in proveedor ">{{item.Category}}</option></select>
+
+          
+
+            
+            <button type="button" ng-click="addProduct()"  class="btn btn-default"  >Add Product</button>
+            <button type="button" ng-click="getProduct()" class="btn btn-default" >Search Product</button>
+            <h2>Product</h2>
+            
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Extent</th>
+                    <th>Description</th>   
+                    <th>Quantity</th>    
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Sucursal</th>
+                    <th>Proveedor</th>
+                  
+                 
+                    
+                   
+             
+                   
+                  
+                    <th>Update</th>
+                    <th>Delete</th>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="item in productList | orderBy:'PName'">
+                            <td contenteditable='true'>{{item.PR_ID}}</td>
+                            <td contenteditable='true'>{{item.PName}}</td>
+                            <td contenteditable='true'>{{item.Extent}}</td>
+                            <td contenteditable='true'>{{item.PDescription}}</td>
+                            <td contenteditable='true'>{{item.Quantity}}</td>
+                            <td contenteditable='true'>{{item.Price}}</td>
+                            <td contenteditable='true'>{{item.Category}}</td>
+                            <td contenteditable='true'>{{item.S_ID}}</td>
+                            <td contenteditable='true'>{{item.P_ID}}</td>
+                            
+                           
+                            <td><a class="btn btn-primary btn-xs" ng-click="addToCart(item.PR_ID)">
+                                         <span class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td><a class="btn btn-danger btn-xs" ng-click="deleteProduct(item.PR_ID)">
+                                        <span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+
+
+            </form>
+        </div>
+       
+        
+
+
+    </body>
+</html>
