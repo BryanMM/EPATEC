@@ -26,7 +26,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:imeActionId="@+id/checkem"
-            android:hint="@string/email"
+            android:hint="Last Name"
             android:id="@+id/Email"
             android:layout_row="1"
             android:layout_column="0" />
@@ -37,9 +37,10 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="@string/Password"
-            android:id="@+id/Pass"
             android:layout_row="2"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:id="@+id/Pass"
+            />
 
         <com.subhrajyoti.passwordview.PasswordView
             android:layout_width="match_parent"
@@ -56,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="@string/ced"
+            android:hint="ID Number"
             android:ems="10"
             android:id="@+id/Ced"
             android:layout_row="4"
@@ -87,8 +88,6 @@
             android:inputType="number"
             android:hint="@string/phone"
             android:ems="10"
-            app:mask="9999-9999"
-            app:placeholder=" "
             android:id="@+id/Phone"
             android:layout_row="7"
             android:layout_column="0" />

@@ -36,6 +36,20 @@ import android.widget.Toast;
 
 import com.subhrajyoti.passwordview.PasswordView;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -170,7 +184,7 @@ public class RegisterWindow extends AppCompatActivity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 String id = ID.getText().toString();
-                if(id.length()!= 10){
+                if(id.length()!= 9){
                     ID.setError("The ID is not correct");
                     focus= ID;
                     status=false;
@@ -183,6 +197,7 @@ public class RegisterWindow extends AppCompatActivity{
         ID.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                ID.setError("The Format is 999999999");
                 String pass = Password.getText().toString();
                 String confp = Conf_password.getText().toString();
                 if (!pass.matches(confp)){
@@ -236,14 +251,8 @@ public class RegisterWindow extends AppCompatActivity{
                     focus.requestFocus();
                     status = false;
                     return true;
-                }else if(!name.contains("@")){
-                    Email.setError("The email format does not match.");
-                    focus = Email;
-                    focus.requestFocus();
-                    status = false;
-                    return true;
-                }else if (name.isEmpty()){
-                    Email.setError("The name box is empty");
+                }else if(name.isEmpty()){
+                    Email.setError(" You must provide a last name");
                     focus = Email;
                     focus.requestFocus();
                     status = false;
@@ -258,9 +267,62 @@ public class RegisterWindow extends AppCompatActivity{
         Register.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                String result="";
+                try {
+                    result = checkUserExists(ID.getText().toString(),Password.getText().toString());
+                    System.out.println(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if(status) {
-                    Intent buy = new Intent(RegisterWindow.this, ClientProfile.class);
-                    startActivity(buy);
+                    String server = "http://isaac:7549/api/client/post";
+                    if(result.length()==5 ){
+                        HttpClient newpost = new DefaultHttpClient();
+                        HttpPost sendinfo = new HttpPost(server);
+                        String json="";
+                        JSONObject post = new JSONObject();
+                        try {
+                            post.accumulate("C_ID",ID.getText().toString());
+                            post.accumulate("FName",Name.getText().toString());
+                            post.accumulate("LName",Email.getText().toString());
+                            post.accumulate("CAddress",Address.getText().toString());
+                            post.accumulate("Phone",Tel.getText().toString());
+                            String[] bday = BDate.getText().toString().split("/");
+                            post.accumulate("Day",bday[0]);
+                            post.accumulate("Month",bday[1]);
+                            post.accumulate("Year",bday[2]);
+                            post.accumulate("Penalization",0);
+                            post.accumulate("CPassword",Password.getText().toString());
+
+                            json = post.toString();
+
+                            StringEntity ent = new StringEntity(json);
+                            sendinfo.setEntity(ent);
+                            sendinfo.setHeader("Accept", "application/json");
+                            sendinfo.setHeader("Content-type", "application/json");
+                            newpost.execute(sendinfo);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        Intent buy = new Intent(RegisterWindow.this, ClientProfile.class);
+                        startActivity(buy);
+                    }else{
+                        Context context = getApplicationContext();
+                        CharSequence text = "An user with the same ID already exists, please try again";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+
                 }else{
                     Context context = getApplicationContext();
                     CharSequence text = "You must fill all the fields";
@@ -282,5 +344,29 @@ public class RegisterWindow extends AppCompatActivity{
         } catch (ParseException e) {
             return false;
         }
+    }
+
+    private String checkUserExists(String uID, String uPassword) throws IOException {
+        //System.out.println(uID+" "+uPassword);
+        String server = "http://isaac:7549/api/check/get/"+uID+"/"+uPassword+"/Client";
+        System.out.println(server);
+        HttpResponse stringresponse;
+        HttpClient Client = new DefaultHttpClient();
+        HttpGet response = new HttpGet(server);
+        stringresponse = Client.execute(response);
+
+        BufferedReader rd = new BufferedReader(new InputStreamReader(stringresponse.getEntity().getContent()));
+        StringBuilder builder = new StringBuilder();
+        String str = "";
+
+        while ((str = rd.readLine()) != null) {
+            builder.append(str);
+        }
+
+        String text = builder.toString();
+        String returnvalue = text.substring(1,text.length()-1);
+        return returnvalue;
+
+
     }
 }

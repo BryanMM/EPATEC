@@ -12,6 +12,7 @@ public class ClientProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_buy);
         Intent create = getIntent();
     }
 }
