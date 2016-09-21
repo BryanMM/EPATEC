@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angular-1.5.8\angular-route.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register a new Provider</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="provider.css">
+        <link rel="stylesheet" href="fontello.css">
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "provider.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        
+    </head>
+    <body>
+   <div ng-app="provider" >
+        <form ng-controller="providerFormCtrl">
+            <input type="number" name="Provider_ID" ng-model="p_ID" placeholder="Provider's ID">
+            <input type="text" name="Provider_Name" ng-model="pName" placeholder="Provider's Name">
+            <input type="text" name="Provider´s_LName" ng-model="lName" placeholder="Provider's Last Name">
+            <input type="text" name="Provider's_Address" ng-model="pAddress" placeholder="Provider's Address">
+            <input type="number" name="Provider's phone" ng-model="phone" placeholder="Phone Number">
+            <input type="number" name="PDay" ng-model="day" placeholder="Day">
+            <input type="number" name="PMonth" ng-model="month" placeholder="Month">
+            <input type="number" name="PYear" ng-model="year" placeholder="Year">
+            <a ng-click="addProvider()" class="btn btn-primary btn-xs" >Become a provider!</a>
+       </form>
+        </div>
+            
+
+            
+    </body>
+</html>

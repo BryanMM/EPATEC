@@ -1,0 +1,75 @@
+<html>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angular-1.5.8\angular-route.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>EPATECWEB</title>
+        <meta name="description" content="Una guía interactiva de primeros pasos para Brackets.">
+        <link rel="stylesheet" href="sales.css">
+        <link rel="stylesheet" href="fontello.css">
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "sales.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        
+    </head>
+    
+
+    
+    
+    
+    <body>
+       <div ng-app="sales" >
+        <form ng-controller="salesFormCtrl"  >
+            <input type="number" name="Client" ng-model="name" placeholder="Cliente ID">
+            <input type="number" name="Phone" ng-model="phone" placeholder="Favorite Phone">
+            <input type="number" name="Priority" ng-model="priority" placeholder="Priority">
+            <input type="text" name="Status" ng-model="status" placeholder="Status">
+            <input type="number" name="Quantity" ng-model="quantity" placeholder="Quantity">
+        
+            <a ng-click="addClient()" class="btn btn-primary btn-xs" >Add New Employee</a>
+            <br /><br />
+
+            
+<!--
+                <h1>EPATEC</h1>
+                <input type="text" name="Client" ng-model="name" placeholder="Cliente ID">
+                <input type="number" name="Phone" ng-model="phone" placeholder="Favorite Phone">
+                <input type="number" name="Priority" ng-model="priority" placeholder="Priority">
+                <input type="text" name="Status" `-model="status" placeholder="Status">
+                <input type="date" name="Date"  ng-model="date" placeholder="Date">
+    
+                  <div class="list-group">
+                    <h2> PRODUCTS </h2>
+                        <select multiple class="form-control">
+                          <option class="list-group-item ">Martillo</option>
+                          <option class="list-group-item ">Desato</option>
+                          <option class="list-group-item ">Parches</option>
+                          <option class="list-group-item ">Latas</option>
+                          <option class="list-group-item ">Pintura</option>
+                        </select>
+
+                  </div>
+
+                <ul>
+                    <li ng-repeat="products">
+                      <input type="number" ng-model="amountProduct" aria-labelledby="select_{{$index}}" />
+                      <button ng-click="removeProduct(product)" aria-label="Remove">X</button>
+                    </li>
+                    <li><button ng-click="addProduct()">add</button></li>
+
+                <button ng-click="sendOrder()">Send</button>
+                               </ul>
+ -->
+
+            </form>
+        </div>
+       
+        
+
+
+    </body>
+</html>
