@@ -127,17 +127,13 @@ namespace WebApplication1.Controllers
         [ActionName("Post")]
         public void AddProduct(Product product)
         {
-            System.Diagnostics.Debug.WriteLine(product.PR_ID);
-            System.Diagnostics.Debug.WriteLine("entrando al post");
-
+            
             SqlConnection myConnection = new SqlConnection();
             myConnection.ConnectionString = GetConnectionString();
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
-            System.Diagnostics.Debug.WriteLine(myConnection.State);
 
-            sqlCmd.CommandText = "INSERT INTO PRODUCT(PR_ID,Price,Extent,PDescription,Quantity,PName) Values(@PR_ID,@Price,@Extent,@PDescription,@Quantity,@PName)";
-            System.Diagnostics.Debug.WriteLine("generando comando");
+            sqlCmd.CommandText = "INSERT INTO PRODUCT(PR_ID,Price,Extent,PDescription,Quantity,PName,P_ID,S_ID) Values(@S_ID,@PR_ID,@Price,@Extent,@PDescription,@Quantity,@PName,@P_ID)";
 
             sqlCmd.Connection = myConnection;
             sqlCmd.Parameters.AddWithValue("@PR_ID", product.PR_ID);
@@ -146,10 +142,25 @@ namespace WebApplication1.Controllers
             sqlCmd.Parameters.AddWithValue("@PDescription", product.PDescription);
             sqlCmd.Parameters.AddWithValue("@Quantity", product.Quantity);
             sqlCmd.Parameters.AddWithValue("@PName", product.PName);
+            sqlCmd.Parameters.AddWithValue("@P_ID", product.PDR_ID);
+            sqlCmd.Parameters.AddWithValue("@S_ID", product.S_ID);
 
             myConnection.Open();
             int rowInserted = sqlCmd.ExecuteNonQuery();
             myConnection.Close();
+
+            SqlConnection CategoryConnection = new SqlConnection();
+            myConnection.ConnectionString = GetConnectionString();
+            SqlCommand CateCmd = new SqlCommand();
+            CateCmd.CommandType = CommandType.Text;
+            CateCmd.CommandText = "INSERT INTO PC(CA_ID,PR_ID) Values(@CA_ID,@PR_ID)";
+            CateCmd.Connection = CategoryConnection;
+            CateCmd.Parameters.AddWithValue("@CA_ID",product.CA_ID);
+            CateCmd.Parameters.AddWithValue("@PR_ID",product.PR_ID);
+            CategoryConnection.Open();
+            CateCmd.ExecuteNonQuery();
+            CategoryConnection.Close();
+
         }
     }
 }

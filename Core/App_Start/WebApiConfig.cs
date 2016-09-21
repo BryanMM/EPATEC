@@ -31,7 +31,7 @@ namespace Core
                 );
             config.Routes.MapHttpRoute(
                 name: "check",
-                routeTemplate: "api/check/{action}/{attribute}/{id}/{charge}",
+                routeTemplate: "api/{controller}/{action}/{attribute}/{id}/{charge}",
                 defaults: new {id = RouteParameter.Optional}
                 );
 

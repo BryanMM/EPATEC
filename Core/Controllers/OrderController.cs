@@ -129,17 +129,17 @@ namespace WebApplication1.Controllers
         [ActionName("post")]
         public void AddOrder(Order order)
         {
-            int rowInserted=0;
+            int rowInserted = 0;
             System.Diagnostics.Debug.WriteLine(order.C_ID);
             string[] products = order.Products.Split(',');
-            string[] values = order.Amount.Split(','); 
+            string[] values = order.Amount.Split(',');
             SqlConnection myConnection = new SqlConnection();
             myConnection.ConnectionString = GetConnectionString();
             SqlCommand sqlCmd = new SqlCommand();
             myConnection.Open();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
-            sqlCmd.CommandText = "INSERT INTO EORDER(O_ID,OPriority,OStatus, OrderDate,S_ID,OPlatform) Values(@O_ID,@OPriority,@OStatus, @OrderDate,@S_ID,@OPlatform)";
+            sqlCmd.CommandText = "INSERT INTO EORDER(O_ID,OPriority,OStatus, OrderDate,S_ID,OPlatform,C_ID) Values(@O_ID,@OPriority,@OStatus, @OrderDate,@S_ID,@OPlatform,@C_ID)";
             System.Diagnostics.Debug.WriteLine("generando comando");
             sqlCmd.Connection = myConnection;
             sqlCmd.Parameters.AddWithValue("@O_ID", order.O_ID);
@@ -147,14 +147,9 @@ namespace WebApplication1.Controllers
             sqlCmd.Parameters.AddWithValue("@OStatus", order.OStatus);
             sqlCmd.Parameters.AddWithValue("@OrderDate", order.OrderDate);
             sqlCmd.Parameters.AddWithValue("@S_ID", order.S_ID);
-            sqlCmd.Parameters.AddWithValue("@OPlatform",order.OPlatform);
+            sqlCmd.Parameters.AddWithValue("@OPlatform", order.OPlatform);
+            sqlCmd.Parameters.AddWithValue("@C_ID", order.C_ID);
             rowInserted = sqlCmd.ExecuteNonQuery();
-            SqlCommand sqlCmd1 = new SqlCommand();
-            sqlCmd1.CommandText = "INSERT INTO MAKE(C_ID,O_ID) Values(@C_ID,@O_ID)";
-            sqlCmd1.Connection = myConnection;
-            sqlCmd1.Parameters.AddWithValue("@C_ID", order.C_ID);
-            sqlCmd1.Parameters.AddWithValue("@O_ID", order.O_ID);
-            rowInserted = sqlCmd1.ExecuteNonQuery();
             
             string action = "INSERT INTO HAS(O_ID,PRName,PRAmount) Values(@O_ID,@PRName,@PRAmount)";
             for (int i = 0; i< products.Length; i++)

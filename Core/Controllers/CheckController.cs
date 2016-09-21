@@ -35,6 +35,7 @@ namespace Core.Controllers
             if (charge.Equals("Client"))
             {
                 action = "SELECT C_ID,CPassword FROM CLIENT WHERE C_ID=" + attribute + " AND CPassword='" + id + "';";
+                System.Diagnostics.Debug.WriteLine(action);
             }
             else
             {
@@ -45,8 +46,10 @@ namespace Core.Controllers
             sqlCmd.CommandText = action;
             sqlCmd.Connection = myConnection;
             myConnection.Open();
-            int result = (int)sqlCmd.ExecuteScalar();
-            if (result == 1)
+            int result = 0;
+            if (sqlCmd.ExecuteScalar() !=null)
+                 result = (int)sqlCmd.ExecuteScalar();
+            if (result > 1)
             {
                 confirmation = "true";
             }

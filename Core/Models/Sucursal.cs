@@ -11,6 +11,7 @@ namespace WebApplication1.Models
         public int S_ID { get; set; }
         public string SName { get; set; }
         public string SAddress { get; set; }
+        
 
     }
 }

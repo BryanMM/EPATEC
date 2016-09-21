@@ -142,7 +142,7 @@ namespace WebApplication1.Controllers
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
 
-            sqlCmd.CommandText = "INSERT INTO EMPLOYEE(E_ID,CName,LName,CAddress,Charge) Values(@E_ID,@CName,@LName,@CAddress,@Charge)";
+            sqlCmd.CommandText = "INSERT INTO EMPLOYEE(E_ID,CName,LName,CAddress,Charge,S_ID) Values(@E_ID,@CName,@LName,@CAddress,@Charge,@S_ID)";
             System.Diagnostics.Debug.WriteLine("generando comando");
 
             sqlCmd.Connection = myConnection;
@@ -151,6 +151,7 @@ namespace WebApplication1.Controllers
             sqlCmd.Parameters.AddWithValue("@LName", employee.LName);
             sqlCmd.Parameters.AddWithValue("@CAddress", employee.CAddress);
             sqlCmd.Parameters.AddWithValue("@Charge", employee.Charge);
+            sqlCmd.Parameters.AddWithValue("@S_ID", employee.S_ID);
             myConnection.Open();
             int rowInserted = sqlCmd.ExecuteNonQuery();
             myConnection.Close();

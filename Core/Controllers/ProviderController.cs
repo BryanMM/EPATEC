@@ -159,6 +159,18 @@ namespace WebApplication1.Controllers
             myConnection.Open();
             int rowInserted = sqlCmd.ExecuteNonQuery();
             myConnection.Close();
+
+            SqlConnection CategoryConnection = new SqlConnection();
+            myConnection.ConnectionString = GetConnectionString();
+            SqlCommand CateCmd = new SqlCommand();
+            CateCmd.CommandType = CommandType.Text;
+            CateCmd.CommandText = "INSERT INTO NEED(S_ID,PDR_ID) Values(@S_ID,@PDR_ID)";
+            CateCmd.Connection = CategoryConnection;
+            CateCmd.Parameters.AddWithValue("@S_ID", provider.S_ID);
+            CateCmd.Parameters.AddWithValue("@PDR_ID", provider.P_ID);
+            CategoryConnection.Open();
+            CateCmd.ExecuteNonQuery();
+            CategoryConnection.Close();
         }
     }
 }
