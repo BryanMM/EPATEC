@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>  
+      
+            <head>
+
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                <title>EPATECWEB</title>
+
+
+                <script src="/angular-1.5.8/angular.js"></script>
+                <script src="/angular-1.5.8/angular.min.js"></script>
+                <script src="/angular-1.5.8\angular-route.js"></script>
+                <script src="/jquery-3.1.0.js"  type="text/javascript"></script>
+                <script src= "/js/clientView.js" type="text/javascript"></script>
+                <link rel="stylesheet" href="/css/views.css">
+                <link rel="stylesheet" href="/css/fontello.css">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script> 
+                    $(function(){
+                        $("#manageClients").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageProviders").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageProducs").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageEmployees").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageCategories").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageStadistics").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                        $("#manageStores").click(function(event){
+                            $("#frame").load("/pages/orderForm.html");
+                      });
+                     
+                      });
+                </script> 
+           </head>
+    <body>
+            <header>
+                <nav class="menu">
+                     <ul>
+                        <li class="buttom"><a href="">Home</a></li>
+                        <li class="buttom"><a href="login.html">Log Out<span class= "icon-users"></span></a>  
+                    </ul>
+                </nav>
+            </header>
+
+       
+            <div id="wrapper" ng-app = "clientView" >
+                <div  ng-controller = "clientViewForm">
+                     <aside id="frame">
+
+                     </aside>
+                </div>
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <h1>ADMIN</h1>
+                        <h2>Maintenance</h2>
+                        <li id="manageClients" class="buttom"> <a>Clients<span class= "icon-users"></span> </a>         
+                        </li>
+                        <li id="manageProviders" class="buttom"> <a>Providers<span class= "icon-users"></span> </a>         
+                        </li>
+                        <li id="manageProducts" class="buttom"> <a>Products<span class= "icon-users"></span> </a>         
+                        </li>
+                        <li id="manageEmployees" class="buttom"> <a>Employees<span class= "icon-users"></span> </a>         
+                        </li>
+                        <li id="manageCategories" class="buttom"> <a>Categories<span class= "icon-users"></span> </a>         
+                        </li>
+                        <li id="manageStores" class="buttom"> <a>BrachStores<span class= "icon-users"></span> </a>         
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+            </script>
+

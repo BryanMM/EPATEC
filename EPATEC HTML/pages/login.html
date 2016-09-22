@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html  >
+    
+    <head>
+        
+        <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>EPATECWEB</title>
+       
+        
+        <script src="/angular-1.5.8/angular.js"></script>
+        <script src="/angular-1.5.8/angular.min.js"></script>
+        <script src="/angular-1.5.8\angular-route.js"></script>
+        <script src="/jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "/js/login.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/fontello.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+        
+    
+    
+    <body>
+        <form ng-app="login">
+            <div class="login-box"  ng-controller="loginFormCtrl" name="loginFormCtrl">
+
+                            <div class="login-logo">
+                                <b>Log In Form</b>
+                            </div>
+                            <div class="login-box-body">
+
+                                <div class="form-group has-feedback" style="margin: 20px 0px 0px 0px;">
+                                    <input id=user type="number" ng-model="login" class="form-control" placeholder="Login">
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                </div>
+
+                                <div class="form-group has-feedback" style="margin: 20px 0px 0px 0px;">
+                                    <input id=pass type="password" ng-model="pass" class="form-control" placeholder="Password">
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                </div>
+
+                                <div class="form-group has-feedback" style="margin: 20px 0px 0px 0px;">
+                                    <input id=char ng-model="charge" type="text" class="form-control" placeholder="Charge">
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                </div>
+
+                                <div align="center">
+                                    <button  ng-click="checkUser()" style="margin: 20px 0px 0px 0px; width:50%" type="submit" class="btn btn-primary btn-block btn-flat">Login in</button>
+                                </div>
+
+                                <div align="center" style="margin: 20px 0px 0px 0px;"  >
+                                    <a  href="#clientForm">Register</a><br>
+                                </div>
+
+                            </div>
+
+            </div>
+        </form>
+    </body>
+</html>
