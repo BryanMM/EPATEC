@@ -1,0 +1,116 @@
+
+div h2{ 
+    margin: auto;
+    text-align: center;
+    color: #F31F1F;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   
+}
+form h1{
+    
+    margin: auto;
+    text-align: center;
+    color: #F31F1F;
+    padding-bottom: 15px;
+    
+}
+button {
+    
+  
+   
+    background: #F31F1F;
+   
+}
+
+button[type="button"]{
+    border: 3;
+    border-color: black;
+   
+    background: #F31F1F;
+    
+    cursor: pointer;
+    color: white;
+    
+}
+
+button[type="button"]:hover{
+    
+    background: #FEDCBA;
+    
+}
+button[type="button"]:focus{
+    
+    
+    background: #F31F1F;
+    
+    cursor: pointer;
+    color: white;
+    
+}
+button[type="button"]:active{
+    
+      
+    background: #000000;
+    
+}
+input {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    margin: 30px 0;
+}
+input[type="date"]{
+    
+    
+    display:inline;
+    padding: 0;
+    width: 30%;
+    margin: 0 0;
+}
+input[type="submit"]{
+    
+    background: #F31F1F;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    
+}
+input[class="btn btn-primary"]{
+    
+    background: #F31F1F;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    
+}
+input[type="submit"]:hover{
+    
+    background: #FEDCBA;
+ 
+    
+}
+input[type="submit"]:active{
+    
+    background: #000000;
+ 
+    
+}
+.sidebar{
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    background: #2C2929;
+    color: white;
+    
+}
+.sidebar ul{
+    list-style: none;
+    color: white;
+}
+
+,sidebar a {
+    color: white;
+    text-decoration: none;
+}

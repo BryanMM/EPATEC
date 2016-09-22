@@ -28,7 +28,7 @@
                             $("#frame").load("/pages/orderForm.html");
                       });
                          $("#manageClients").click(function(event){
-                            $("#frame").load("/pages/orderForm.html");
+                            $("#frame").load("/pages/clientForm.html");
                       });
                         $("#manageProviders").click(function(event){
                             $("#frame").load("/pages/orderForm.html");
@@ -37,7 +37,7 @@
                             $("#frame").load("/pages/orderForm.html");
                       });
                         $("#manageEmployees").click(function(event){
-                            $("#frame").load("/pages/orderForm.html");
+                            $("#frame").attr('src',"/pages/employeeForm.html");
                       });
                         $("#manageCategories").click(function(event){
                             $("#frame").load("/pages/orderForm.html");
@@ -62,9 +62,9 @@
        
              <div id="wrapper" ng-app = "clientView" >
                 <div  ng-controller = "clientViewForm">
-                     <aside id="frame">
-
-                     </aside>
+                     <iframe id="frame" src="about:blank">
+                         
+                     </iframe>
                 </div>
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
