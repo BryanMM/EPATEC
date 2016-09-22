@@ -1,45 +1,27 @@
 <!DOCTYPE html>
 <html>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>EPATECWEB</title>
         <meta name="description" content="Una guía interactiva de primeros pasos para Brackets.">
-        <link rel="stylesheet" href="views.css">
-        <link rel="stylesheet" href="fontello.css">
-      
+        <link rel="stylesheet" href="/css/views.css">
+        <link rel="stylesheet" href="/css/fontello.css">
         <script src="jquery-3.1.0.js"  type="text/javascript"></script>
-        <script> 
-            $(function(){
-              $("#login").click(function(event){
-
-                     $("#main").load("AdmiClient.html");
-
-              });
-     
-    });
-    </script> 
         
         
 
     </head>
     
     <body>
-      <content id="main">
-                
-            
-        </content>
-     
        <header>
             
         
-            <nav class="menu"    >
+            <nav class="menu">
                  <ul>
                     <li class="buttom"><a href="">Home</a></li>
-                    <li id="login" class="buttom"><a>Log Out<span class= "icon-users"></span> </a> 
+                    <li class="buttom"><a href="login.html">Log Out<span class= "icon-users"></span></a>  
                      </li>
                      <li class="buttom"><a href="">About<span class= "icon-cog-alt"></span></a>  
                      </li>
@@ -53,10 +35,14 @@
             </nav>
             
         </header>
-         
- 
-       <div id="wrapper">
-              
+
+        
+         <div id="wrapper">
+             <div>
+                 <iframe 
+                         src="/pages/login.html" >
+                 </iframe>
+             </div>
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
@@ -88,8 +74,6 @@
                 </ul>
             </div>
         </div>
-
-  
             <script>
             $("#menu-toggle").click(function(e) {
                 e.preventDefault();

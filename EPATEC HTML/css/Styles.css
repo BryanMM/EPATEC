@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;   
+  
+ 
+}
+body{
+    background-image: url(/images/ferreteria2.jpg);
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+    margin: 0;
+    min-height: 200vh;
+}
+header{
+    background: #979191;
+    height: 50px;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    
+}
+#menuButtom {
+    display: none;
+}
+header label{
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+.menu ul {
+     background: #979191;
+     display: flex;
+     list-style: none;
+}
+.menu ul ul {
+    display: none;
+    
+}
+.menu a{
+    display: block;
+    padding: 15px 10px;
+    color: white;
+    text-decoration: none;
+    
+}
+.menu a:hover{
+    background: #6E6969; 
+}
+.menu ul li:hover ul {
+    display: block;
+    position: absolute;
+    padding-right: 10px;
+    align-items: center;
+}
+
+
+@media (max-width:450px){
+    header label {
+        display: block;
+    }
+    .menu {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 30%;
+        transform: translateX(-100%);
+        transition: all 0.4s;
+            
+    }
+    .menu ul{
+        flex-direction: column;
+        
+    }
+    .menu ul li:hover ul {
+        display: none;
+        
+    }
+    #menuButtom:cheked ~ .menu{
+        transform: translate(0%);
+        
+    }
+}
+
