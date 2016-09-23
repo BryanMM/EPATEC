@@ -7,6 +7,7 @@ angular.module('provider',[])
         });
     $scope.addProvider = function () {
         var Provider = {
+            "S_ID": $scope.branchStore
             "P_ID": $scope.p_ID,
             "PName": $scope.pName,
             "LName": $scope.lName,
