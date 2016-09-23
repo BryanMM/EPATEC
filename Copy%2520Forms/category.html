@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="angular-1.5.8\angular-route.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register a new Provider</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="fontello.css">
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "category.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        
+    </head>
+    <body>
+   <div ng-app="category" >
+        <form ng-controller="categoryFormCtrl">
+            <input type="text" name="CA_ID" ng-model="ca_id" placeholder="Category's Name">
+            <input type="text" name="Category_Description" ng-model="cdescription" placeholder="Category's Description">
+            
+            <a ng-click="addCategory()" class="btn btn-primary btn-xs" >Add the new Category</a>
+            <div class="table-responsive">
+               <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>CA_ID</th>
+                    <th>cdescription</th>
+                    
+
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in Category">
+                            <td>{{item.CA_ID}}</td>
+                            <td>{{item.CDescription}</td>
+                               <td><a class="btn btn-danger btn-xs" ng-click="deleteProvider(item.CA_ID)">
+                                        <span class="glyphicon glyphicon-trash"></span></a></td>
+                            
+                            <!--<td>{{item.DepartmentName}}</td>-->
+                            
+                                        
+                         
+        
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            
+            
+       </form>
+        </div>
+            
+
+            
+    </body>
+</html>
