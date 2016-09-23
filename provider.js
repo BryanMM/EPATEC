@@ -88,13 +88,23 @@ angular.module('provider',[])
                 attributes+="Year";
                 values+=$scope.year;
             }
-                
-        console.log(attributes, values);
-        $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/'+attributes+"/"+values).
-        success(function (data, status, headers, config) {
-             $scope.Provider = data;
-        }).
-        error(function (data, status, headers, config) {
-            alert('Error retrieving providers information!')
-        }); }    
+        if(attributes==""){
+            console.log(attributes, values);
+            $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/none/undefined').
+            success(function (data, status, headers, config) {
+                 $scope.Provider = data;
+            }).
+            error(function (data, status, headers, config) {
+                alert('Error retrieving providers information!')
+            }); 
+        }
+        else{
+            console.log(attributes, values);
+            $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/'+attributes+"/"+values).
+            success(function (data, status, headers, config) {
+                 $scope.Provider = data;
+            }).
+            error(function (data, status, headers, config) {
+                alert('Error retrieving providers information!')
+            }); }    
 } ])
