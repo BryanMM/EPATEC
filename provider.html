@@ -29,8 +29,45 @@
             <input type="number" name="PMonth" ng-model="month" placeholder="Month">
             <input type="number" name="PYear" ng-model="year" placeholder="Year">
             <a ng-click="addProvider()" class="btn btn-primary btn-xs" >Become a provider!</a>
+            <a ng-click="getProvider()" class="btn btn-primary btn-xs" >Get provider's</a>
+            
+                      <div class="table-responsive">
+               <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>P_ID</th>
+                    <th>PName</th>
+                    <th>LName</th>
+                    <th>Phone</th>
+                    <th>Day</th>
+                    <th>Month</th>
+                    <th>year</th>
+
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in Provider | orderBy: '-PRAmount'">
+                            <td>{{item.P_ID}}</td>
+                            <td>{{item.PName}}</td>
+                            <td>{{item.LName}}</td>
+                            <td>{{item.PAddress}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td>{{item.Day}}</td>
+                            <td>{{item.Month}}</td>
+                            <td>{{item.Year}}</td>
+                            
+                            
+                            <!--<td>{{item.DepartmentName}}</td>-->
+                            
+                                        
+                         
+        
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
        </form>
         </div>
+ 
             
 
             
