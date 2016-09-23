@@ -1,23 +1,37 @@
 angular.module('clients',[])
 .controller('clientFormCtrl', ['$scope', '$http', function ($scope, $http) {
+    var clients;
+   
+    
+    var idClient;
+    var date;
+    var year ;
+    var day;
+    var month;
     $scope.addClient = function () {
+        date = new Date($scope.birthdate);
+        day = date.getDate();
+        year = date.getFullYear();
+        
+        month = date.getMonth() + 1;
         var Client = {
             "C_ID": $scope.clientid,
             "FName": $scope.name,
             "LName": $scope.lastname,
             "CAddress": $scope.address,
             "Phone": $scope.phone,
-            "Day":1,
-            "Month":2,
-            "Year":3,
-            "Penalization":7
+            "Day":day,
+            "Month":month,
+            "Year":year,
+            "Penalization":$scope.penalization,
+            "CPassword":$scope.password
         }
         console.log(Client); $http.post('http://isaac:7549/api/client/post',Client).
         success(function (data, status, headers, config) {
             alert('Client has been posted');
         }).
         error(function (data, status, headers, config) {
-            alert('gracias a la vida que me ha dado tanto')
+            alert('error posting client')
         });
     }
     $scope.getClient = function () {
@@ -68,19 +82,29 @@ angular.module('clients',[])
             }
          
         console.log(attributes, values);
-        $http.get('http://isaac:7549/api/client/get/'+attributes+"/"+values).
-        success(function (data, status, headers, config) {
-            console.log(JSON.stringify(data));
-        }).
-        error(function (data, status, headers, config) {
-            alert('gracias a la vida que me ha dado tanto')
-        });      
+        $http.get('http://isaac:7549/api/client/get/'+attributes+"/"+values)
+            .then( function (response) {    
+              $scope.clients = response.data;           
+           });      
     }
-    $scope.deleteClient = function (){
-         $http.post('http://isaac/7549/api/client/delete/C_ID'+$scope.e_ID).success(function(data, status, headers, config){
+    $scope.deleteClient = function (pidClient){
+         idClient= pidClient;
+         $http.get('http://isaac:7549/api/client/delete/C_ID/'+idClient).success(function(data, status, headers, config){
              alert('The client has been deleted!');
          }).error(function(data, status, headers, config){
-             alert('Error while deleting the employee')
+             alert('Error while deleting the client')
+         });
+    }
+    $scope.updateClient = function (pid,pName,pLName,pAddress,pPhone,pDay,pMonth,pYear,pPenalization,pPassword){
+        var clientAttributes = "FName,LName,CAddress,Phone,Day,Month,Year,Penalization,CPassword";
+       
+        
+        
+         
+         $http.get('http://isaac:7549/api/client/update/'+clientAttributes+"/"+pName+","+pLName+","+pAddress+","+pPhone+","+pDay+","+pMonth+","+pYear+","+pPenalization+","+pPassword+"/"+"C_ID"+"/"+pid).success(function(data, status, headers, config){
+             alert('The client has been update!');
+         }).error(function(data, status, headers, config){
+             alert('Error while updating the client')
          });
     }
     
