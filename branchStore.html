@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+        <script src="angular-1.5.8/angular.js"></script>
+        <script src="angular-1.5.8/angular.min.js"></script>
+        <script src="angular-1.5.8\angular-route.js"></script>
+        <script src="jquery-3.1.0.js"  type="text/javascript"></script>
+        <script src= "branchStore.js" type="text/javascript"></script>
+     
+        <link rel="stylesheet" href="branchStore.css">
+        <link rel="stylesheet" href="fontello.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Branch Store</title>
+        <meta name="description" content="branch Stores">
+      
+        
+        
+    </head>
+    
+
+    
+    
+    
+    <body>
+       <div ng-app="branchs" >
+        <form ng-controller="branchFormCtrl"  >
+          
+            <h2>BRANCH STORE</h2>
+            <input type="text" name="Name" ng-model="name" placeholder="Name">
+            <input type="number" min="0" name="ClientID" ng-model="branchid" placeholder="ID">
+            <input type="text" name="Password" ng-model="password" placeholder="Password">
+            <input type="text" name="Address" ng-model="address" placeholder="Address">
+
+            
+            <button type="button" ng-click="addBranch()"  class="btn btn-default"  >Add Branch</button>
+            <button type="button" ng-click="getBranch()" class="btn btn-default" >Search Branch</button>
+            <h2>Branch Stores</h2>
+            
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Address</th>
+             
+                   
+                    <!--<th>Department</th>-->
+                    <th>Update</th>
+                    <th>Delete</th>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="item in branchs | orderBy:'SName'">
+                            
+
+                             <td contenteditable='true' id="tableid">{{item.S_ID}}</td>
+                            <td contenteditable='true' id="tablefname">{{item.SName}}</td>
+                            <td contenteditable='true' id="tablepassword">{{item.SPassword}}</td>
+                            <td contenteditable='true' id="tableaddress">{{item.SAddress}}</td>
+              
+
+                          
+                            <td><a class="btn btn-primary btn-xs" ng-click="updateBranch(item.S_ID,item.SName,item.SPassword,item.SAddress)">
+                                        <span class="glyphicon glyphicon-pencil"></span></a></td>
+                            <td><a class="btn btn-danger btn-xs" ng-click="deleteBranch(item.S_ID)">
+                                        <span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div
+            
+
+
+            </form>
+        </div>
+       
+        
+
+
+    </body>
+</html>

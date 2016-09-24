@@ -1,7 +1,13 @@
 angular.module('provider',[])
 .controller('providerFormCtrl', ['$scope', '$http', function ($scope, $http) {
+    var branchStores;
+      console.log(clientID); $http.get('http://isaac:7549/api/sucursal/get/S_ID/undefined')
+            .then( function (response) {    
+              $scope.branchStores = response.data;           
+        });
     $scope.addProvider = function () {
         var Provider = {
+            "S_ID": $scope.branchStore
             "P_ID": $scope.p_ID,
             "PName": $scope.pName,
             "LName": $scope.lName,
@@ -10,6 +16,7 @@ angular.module('provider',[])
             "Day": $scope.day,
             "Month": $scope.month,
             "Year": $scope.year
+            
         }
         console.log(Provider);
         $http.post('http://DESKTOP-E6QPTVT:7549/api/provider/post',Provider).
@@ -88,23 +95,13 @@ angular.module('provider',[])
                 attributes+="Year";
                 values+=$scope.year;
             }
-        if(attributes==""){
-            console.log(attributes, values);
-            $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/none/undefined').
-            success(function (data, status, headers, config) {
-                 $scope.Provider = data;
-            }).
-            error(function (data, status, headers, config) {
-                alert('Error retrieving providers information!')
-            }); 
-        }
-        else{
-            console.log(attributes, values);
-            $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/'+attributes+"/"+values).
-            success(function (data, status, headers, config) {
-                 $scope.Provider = data;
-            }).
-            error(function (data, status, headers, config) {
-                alert('Error retrieving providers information!')
-            }); }    
+                
+        console.log(attributes, values);
+        $http.get('http:///DESKTOP-E6QPTVT:7549/api/provider/get/'+attributes+"/"+values).
+        success(function (data, status, headers, config) {
+             $scope.Provider = data;
+        }).
+        error(function (data, status, headers, config) {
+            alert('Error retrieving providers information!')
+        }); }    
 } ])

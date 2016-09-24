@@ -5,6 +5,7 @@
         <script src="angular-1.5.8\angular-route.js"></script>
         <script src="jquery-3.1.0.js"  type="text/javascript"></script>
         <script src= "AdmiClient.js" type="text/javascript"></script>
+     
         <link rel="stylesheet" href="AdmiClient.css">
         <link rel="stylesheet" href="fontello.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -33,6 +34,7 @@
             <input type="text" name="Name" ng-model="name" placeholder="Name">
             <input type="text" name="LastName" ng-model="lastname" placeholder="Last Name ">
             <input type="number" min="0" name="ClientID" ng-model="clientid" placeholder="ID">
+            <input type="text" name="Password" ng-model="password" placeholder="Password">
             <input type="number" min="0" name="Phone" ng-model="phone" placeholder="Phone Number">
             <input type="number" min="0" name="Penzalization" ng-model="penalization" placeholder="Penalization">
             <input type="text" name="Address" ng-model="address" placeholder="Address">
@@ -49,6 +51,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Last Name</th>
+                    <th>Password</th>
                     <th>Phone</th>
                     <th>Birth Date</th>
                     <th>Penalizaton</th>
@@ -61,25 +64,28 @@
                     </thead>
                     <tbody>
 
-                        <tr ng-repeat="item in Order | orderBy:'CName'">
-                            <td contenteditable='true'>{{item.C_ID}}</td>
-                            <td contenteditable='true'>{{item.FName}}</td>
-                            <td contenteditable='true'>{{item.LName}}</td>
-                            <td contenteditable='true'>{{item.Phone}}</td>
-                            <td contenteditable='true'>{{item.BDate}}</td>
-                            <td contenteditable='true'>{{item.Penalization}}</td>
-                            <td contenteditable='true'>{{item.CAddress}}</td>
+                        <tr ng-repeat="item in clients | orderBy:'FName'">
                             
-                           
-                            <td><a class="btn btn-primary btn-xs" href="#/EditEmployee/{{item.EmployeeID}}">
+
+                             <td contenteditable='true' id="tableid">{{item.C_ID}}</td>
+                            <td contenteditable='true' id="tablefname">{{item.FName}}</td>
+                            <td contenteditable='true' id="tablelname">{{item.LName}}</td>
+                            <td contenteditable='true' id="tablepassword">{{item.CPassword}}</td>
+                            <td contenteditable='true' id="tablephone">{{item.Phone}}</td>
+                            <td contenteditable='true' id="tabledate">{{item.Day+"/"+item.Month+"/"+item.Year}}</td>
+                            <td contenteditable='true' id="tablepenalization">{{item.Penalization}}</td>
+                            <td contenteditable='true' id="tableaddress">{{item.CAddress}}</td>
+              
+ 
+                            <td><a class="btn btn-primary btn-xs" ng-click="updateClient(item.C_ID,item.FName,item.LName,item.CAddress ,item.Phone,item.Day,item.Month,item.Year,item.Penalization,item.CPassword)">
                                         <span class="glyphicon glyphicon-pencil"></span></a></td>
-                            <td><a class="btn btn-danger btn-xs" href="#/DeleteEmployee/{{item.EmployeeID}}">
+                            <td><a class="btn btn-danger btn-xs" ng-click="deleteClient(item.C_ID)">
                                         <span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                     </tbody>
                 </table>
 
-            </div>
+            </div
             
 
 

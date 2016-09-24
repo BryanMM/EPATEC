@@ -13,20 +13,20 @@ body{
 }
 form {
       
-    position:sticky;
+   position:sticky;
     margin: 0;
     padding: 0;
     margin: auto;
     width: 450px;
-    height: 600px;
+
     
 
     min-height: 50%;
     min-width: 50%;
     background: #979191;
     padding: 30px;
-    max-height: 65%;
     max-width: 50%;
+    display:block;
     
 }
 
@@ -60,10 +60,8 @@ form h1{
 
 button {
     
-    display: block;
-    padding: 10px;
-    width: 100%;
-    margin: 30px 0;
+  
+   
     background: #F31F1F;
    
 }
@@ -99,7 +97,6 @@ button[type="button"]:active{
     background: #000000;
     
 }
-
 input {
     display: block;
     padding: 10px;

@@ -20,6 +20,9 @@
     <body>
    <div ng-app="provider" >
         <form ng-controller="providerFormCtrl">
+            <select type="number"  name="BranchStore" ng-model="branchStore" placeholder="Select a Brach Store" >
+                <option ng-repeat="item in branchStores">{{item.S_ID}}</option>
+            </select>
             <input type="number" name="Provider_ID" ng-model="p_ID" placeholder="Provider's ID">
             <input type="text" name="Provider_Name" ng-model="pName" placeholder="Provider's Name">
             <input type="text" name="Provider´s_LName" ng-model="lName" placeholder="Provider's Last Name">
@@ -53,7 +56,8 @@
                             <td>{{item.Day}}</td>
                             <td>{{item.Month}}</td>
                             <td>{{item.Year}}</td>
-                            
+                               <td><a class="btn btn-danger btn-xs" ng-click="deleteProvider(item.P_ID)">
+                                        <span class="glyphicon glyphicon-trash"></span></a></td>
                             
                             <!--<td>{{item.DepartmentName}}</td>-->
                             
