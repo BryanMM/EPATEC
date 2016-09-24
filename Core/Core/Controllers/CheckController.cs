@@ -28,7 +28,7 @@ namespace Core.Controllers
             string confirmation = "false";
             string action = "";
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -41,7 +41,7 @@ namespace Core.Controllers
             {
                 action = "SELECT E_ID,EPassword,Charge FROM EMPLOYEE WHERE E_ID=" + attribute + " AND EPassword='" + id + "' AND Charge='" + charge + "';";
             }
-            
+            System.Diagnostics.Debug.WriteLine(action);
             sqlCmd.CommandType = CommandType.Text;
             sqlCmd.CommandText = action;
             sqlCmd.Connection = myConnection;
@@ -49,7 +49,8 @@ namespace Core.Controllers
             int result = 0;
             if (sqlCmd.ExecuteScalar() !=null)
                  result = (int)sqlCmd.ExecuteScalar();
-            if (result > 1)
+            System.Diagnostics.Debug.WriteLine(result);
+            if (result >= 1)
             {
                 confirmation = "true";
             }

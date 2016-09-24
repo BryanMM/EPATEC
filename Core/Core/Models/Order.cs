@@ -15,7 +15,7 @@ namespace WebApplication1.Models
         public string OStatus { get; set; }
         public DateTime OrderDate { get; set; }
         public string OPlatform { get; set; }
-        public string S_ID { get; set; }
+        public int S_ID { get; set; }
         public int C_ID { get; set; }
 
     }

@@ -37,7 +37,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -62,7 +62,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -113,7 +113,7 @@ namespace WebApplication1.Controllers
             string[] ids = id.Split(',');
             string deletepc = "DELETE FROM PC WHERE ";
             SqlConnection DeleteProduct = new SqlConnection();
-            DeleteProduct.ConnectionString = GetConnectionString();
+            DeleteProduct.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             for(int i = 0; i < actions.Length; i++)
             {
                 if (actions[i].Equals("PR_ID"))
@@ -121,6 +121,7 @@ namespace WebApplication1.Controllers
                     deletepc = deletepc + actions[i] + "='" + ids[i] + "';";
                 }
             }
+            System.Diagnostics.Debug.WriteLine(deletepc);
             SqlCommand PCmd = new SqlCommand();
             PCmd.CommandType = CommandType.Text;
             PCmd.CommandText = deletepc;
@@ -142,7 +143,7 @@ namespace WebApplication1.Controllers
                 }
             }
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             sqlCmd.CommandText = deleteproduct;
@@ -157,11 +158,11 @@ namespace WebApplication1.Controllers
         {
             
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
 
-            sqlCmd.CommandText = "INSERT INTO PRODUCT(PR_ID,Price,Extent,PDescription,Quantity,PName,P_ID,S_ID) Values(@S_ID,@PR_ID,@Price,@Extent,@PDescription,@Quantity,@PName,@P_ID)";
+            sqlCmd.CommandText = "INSERT INTO PRODUCT(PR_ID,Price,Extent,PDescription,Quantity,PName,P_ID,S_ID) Values(@PR_ID,@Price,@Extent,@PDescription,@Quantity,@PName,@P_ID,@S_ID)";
 
             sqlCmd.Connection = myConnection;
             sqlCmd.Parameters.AddWithValue("@PR_ID", product.PR_ID);
@@ -178,7 +179,7 @@ namespace WebApplication1.Controllers
             myConnection.Close();
 
             SqlConnection CategoryConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            CategoryConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand CateCmd = new SqlCommand();
             CateCmd.CommandType = CommandType.Text;
             CateCmd.CommandText = "INSERT INTO PC(CA_ID,PR_ID) Values(@CA_ID,@PR_ID)";

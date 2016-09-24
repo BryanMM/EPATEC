@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -67,7 +67,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -102,7 +102,9 @@ namespace WebApplication1.Controllers
                 emp.Phone = Convert.ToInt32(reader.GetValue(4).ToString());
                 emp.Day = Convert.ToInt32(reader.GetValue(5).ToString());
                 emp.Month = Convert.ToInt32(reader.GetValue(6).ToString());
-                emp.Penalization = Convert.ToInt32(reader.GetValue(7).ToString());
+                emp.Year = Convert.ToInt32(reader.GetValue(7).ToString());
+                emp.Penalization = Convert.ToInt32(reader.GetValue(8).ToString());
+                emp.CPassword = reader.GetValue(9).ToString();
                 values.Add(emp);
             }
             
@@ -116,7 +118,7 @@ namespace WebApplication1.Controllers
             string[] actions = attribute.Split(',');
             string[] ids = id.Split(',');
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
@@ -136,7 +138,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al post");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);

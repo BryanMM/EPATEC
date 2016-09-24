@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -95,7 +95,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -129,6 +129,8 @@ namespace WebApplication1.Controllers
             }
             
             myConnection.Close();
+            JsonResult<List<Sucursal>> results = Json(values);
+            System.Diagnostics.Debug.WriteLine("Estp se va a poner loco "+results);
             return Json(values);
         }
         [HttpGet]
@@ -137,7 +139,7 @@ namespace WebApplication1.Controllers
         {
 
             SqlConnection DeleteSP = new SqlConnection();
-            DeleteSP.ConnectionString = GetConnectionString();
+            DeleteSP.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand SPCmd = new SqlCommand();
             SPCmd.CommandType = CommandType.Text;
             SPCmd.CommandText = "DELETE FROM NEED WHERE S_ID=" + id + ";";
@@ -147,7 +149,7 @@ namespace WebApplication1.Controllers
             DeleteSP.Close();
 
             SqlConnection DeleteSE = new SqlConnection();
-            DeleteSE.ConnectionString = GetConnectionString();
+            DeleteSE.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand SECmd = new SqlCommand();
             SECmd.CommandType = CommandType.Text;
             SECmd.CommandText = "DELETE FROM EMPLOYEE WHERE S_ID=" + id + ";";
@@ -157,7 +159,7 @@ namespace WebApplication1.Controllers
             DeleteSE.Close();
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             sqlCmd.CommandText = "DELETE FROM SUCURSAL WHERE S_ID=" + id + ";";
@@ -174,7 +176,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al post");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);

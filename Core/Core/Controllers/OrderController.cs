@@ -43,7 +43,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -97,10 +97,13 @@ namespace WebApplication1.Controllers
             while (reader.Read())
             {
                 emp = new Order();
-                emp.O_ID = Convert.ToInt32(reader.GetValue(0));
-                emp.OPriority = Convert.ToInt32(reader.GetValue(1).ToString());
-                emp.OStatus = reader.GetValue(2).ToString();
-                emp.OrderDate = Convert.ToDateTime(reader.GetValue(3).ToString());
+                emp.O_ID = Convert.ToInt32(reader.GetValue(6));
+                emp.OPriority = Convert.ToInt32(reader.GetValue(0).ToString());
+                emp.OStatus = reader.GetValue(1).ToString();
+                emp.OrderDate = Convert.ToDateTime(reader.GetValue(2).ToString());
+                emp.S_ID = Convert.ToInt32(reader.GetValue(3).ToString());
+                emp.OPlatform = reader.GetValue(4).ToString();
+                emp.C_ID = Convert.ToInt32(reader.GetValue(5).ToString());
                 values.Add(emp);
             }
             
@@ -114,7 +117,7 @@ namespace WebApplication1.Controllers
             string[] actions = attribute.Split(',');
             string[] ids = id.Split(',');
             SqlConnection EraseHas = new SqlConnection();
-            EraseHas.ConnectionString = GetConnectionString();
+            EraseHas.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             for (int i = 0; i < actions.Length; i++)
             {
                 if (actions[i].Equals("O_ID"))
@@ -133,7 +136,7 @@ namespace WebApplication1.Controllers
 
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
@@ -166,7 +169,7 @@ namespace WebApplication1.Controllers
             string[] products = order.Products.Split(',');
             string[] values = order.Amount.Split(',');
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             myConnection.Open();
             sqlCmd.CommandType = CommandType.Text;
@@ -194,8 +197,8 @@ namespace WebApplication1.Controllers
                 sqlCmd2.Parameters.AddWithValue("@PRAmount", Convert.ToInt32(values[i]));
                 rowInserted = sqlCmd2.ExecuteNonQuery();
             }
-            
             myConnection.Close();
+
         }
     }
 }

@@ -23,11 +23,11 @@ namespace WebApplication1.Controllers
             {
                 if(i == (uattr.Length - 1))
                 {
-                    formingString = formingString + uattr[i] + "=" + uvalue[i]+" ";
+                    formingString = formingString + uattr[i] + "='" + uvalue[i]+"' ";
                 }
                 else
                 {
-                    formingString = formingString + uattr[i] + "=" + uvalue[i] + ", ";
+                    formingString = formingString + uattr[i] + "='" + uvalue[i] + "', ";
                 }
             }
             formingString = formingString + "WHERE ";
@@ -35,11 +35,11 @@ namespace WebApplication1.Controllers
             {
                 if(i == (cattr.Length - 1))
                 {
-                    formingString = formingString + cattr[i] + "=" + cvalue[i];
+                    formingString = formingString + cattr[i] + "='" + cvalue[i] + "';";
                 }
                 else
                 {
-                    formingString = formingString + cattr[i] + "=" + cvalue[i] + " AND ";
+                    formingString = formingString + cattr[i] + "='" + cvalue[i] + "' AND ";
                 }
             }
             return formingString;
@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -95,7 +95,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -123,7 +123,7 @@ namespace WebApplication1.Controllers
             {
                 emp = new Category();
                 emp.CA_ID = reader.GetValue(0).ToString();
-                emp.CDDescription = reader.GetValue(1).ToString();
+                emp.CDescription = reader.GetValue(1).ToString();
                 values.Add(emp);
 
             }
@@ -137,7 +137,7 @@ namespace WebApplication1.Controllers
         {
 
             SqlConnection DeletePC = new SqlConnection();
-            DeletePC.ConnectionString = GetConnectionString();
+            DeletePC.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             SqlCommand PCmd = new SqlCommand();
             PCmd.CommandType = CommandType.Text;
@@ -149,7 +149,7 @@ namespace WebApplication1.Controllers
             DeletePC.Close();
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
@@ -167,7 +167,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al post");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
@@ -177,7 +177,7 @@ namespace WebApplication1.Controllers
 
             sqlCmd.Connection = myConnection;
             sqlCmd.Parameters.AddWithValue("@CA_ID", category.CA_ID);
-            sqlCmd.Parameters.AddWithValue("@CDescription", category.CDDescription);
+            sqlCmd.Parameters.AddWithValue("@CDescription", category.CDescription);
 
             myConnection.Open();
             int rowInserted = sqlCmd.ExecuteNonQuery();

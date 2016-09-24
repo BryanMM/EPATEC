@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine(action);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -67,7 +67,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -119,7 +119,7 @@ namespace WebApplication1.Controllers
             List<int> PR_ID = new List<int>();
             SqlDataReader reader;
             SqlConnection SelectProducts = new SqlConnection();
-            SelectProducts.ConnectionString = GetConnectionString();
+            SelectProducts.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             SucursalController deleteString = new SucursalController();
@@ -132,15 +132,18 @@ namespace WebApplication1.Controllers
                 PR_ID.Add(Convert.ToInt32(reader.GetValue(0)));
             }
             SelectProducts.Close();
-
-            DeletePC(PR_ID,"PC","PR_ID");
-            DeletePC(PR_ID, "PRODUCT", "PR_ID");
+            if(PR_ID.Count != 0)
+            {
+                DeletePC(PR_ID, "PC", "PR_ID");
+                DeletePC(PR_ID, "PRODUCT", "PR_ID");
+            }
+            
             List<int> PDR_ID = new List<int>();
             PDR_ID.Add(Convert.ToInt32(id));
             DeletePC(PDR_ID, "NEED","PDR_ID");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand PDRCmd = new SqlCommand();
             PDRCmd.CommandType = CommandType.Text;
             PDRCmd.CommandText = "DELETE FROM EPROVIDER WHERE " + attribute + "='" + id + "';";
@@ -155,19 +158,22 @@ namespace WebApplication1.Controllers
         {
             string action = "DELETE FROM "+table+" WHERE ";
 
-            for(int i = 0; i < products.Count; i++)
-            {
-                if(i == (products.Count - 1))
+                for (int i = 0; i < products.Count; i++)
                 {
-                    action += attribute+"=" + products[i] + ";";
+                    if (i == (products.Count - 1))
+                    {
+                        action += attribute + "=" + products[i] + ";";
+                    }
+                    else
+                    {
+                        action += attribute + "=" + products[i] + " AND ";
+                    }
                 }
-                else
-                {
-                    action += attribute+"=" + products[i] + " AND ";
-                }
-            }
+
+            
+            System.Diagnostics.Debug.WriteLine(action);
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             sqlCmd.CommandText = action;
@@ -186,7 +192,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al post");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
@@ -208,7 +214,7 @@ namespace WebApplication1.Controllers
             myConnection.Close();
 
             SqlConnection CategoryConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            CategoryConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlCommand CateCmd = new SqlCommand();
             CateCmd.CommandType = CommandType.Text;
             CateCmd.CommandText = "INSERT INTO NEED(S_ID,PDR_ID) Values(@S_ID,@PDR_ID)";

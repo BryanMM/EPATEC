@@ -41,10 +41,10 @@ namespace WebApplication1.Controllers
             string action = "";
             CategoryController updateString = new CategoryController();
             action = updateString.UpdateConnectionString("UPDATE EMPLOYEE ", uattr, uvalue, cattr, cvalue);
-            System.Diagnostics.Debug.WriteLine(action);
+            System.Diagnostics.Debug.WriteLine(action+" "+attr+" "+avalue);
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -69,7 +69,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al get");
             SqlDataReader reader = null;
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             System.Diagnostics.Debug.WriteLine("cargo base");
             SqlCommand sqlCmd = new SqlCommand();
             System.Diagnostics.Debug.WriteLine("cargo sqlcommand");
@@ -103,6 +103,8 @@ namespace WebApplication1.Controllers
                 emp.LName = reader.GetValue(2).ToString();
                 emp.CAddress = reader.GetValue(3).ToString();
                 emp.Charge = reader.GetValue(4).ToString();
+                emp.S_ID = Convert.ToInt32(reader.GetValue(5));
+                emp.CPassword = reader.GetValue(6).ToString();
                 values.Add(emp);
 
             }
@@ -117,7 +119,7 @@ namespace WebApplication1.Controllers
             string[] actions = attribute.Split(',');
             string[] ids = id.Split(',');
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString();
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
@@ -137,7 +139,7 @@ namespace WebApplication1.Controllers
             System.Diagnostics.Debug.WriteLine("entrando al post ");
 
             SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = GetConnectionString(); 
+            myConnection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
             System.Diagnostics.Debug.WriteLine(myConnection.State);
