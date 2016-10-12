@@ -23,11 +23,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile 'com.github.mikepenz:MaterialDrawer:v5.6.0'
     compile 'com.github.scottyab:showhidepasswordedittext:0.8'
     compile 'com.github.SubhrajyotiSen:library:1.1.1'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+
 
 }

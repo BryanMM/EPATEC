@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="top|left|bottom|center|right"
+        android:columnOrderPreserved="true"
+        android:columnCount="2"
+        android:rowCount="19">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subsidiary"
+            android:id="@+id/textView4"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textColor="#0d0c0c" />
+
+        <Spinner
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/product"
+            android:hint="Specified product"
+            android:layout_row="13"
+            android:layout_column="1" />
+
+        <EditText
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantity"
+            android:layout_row="14"
+            android:hint="Specified quantity"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add product"
+            android:id="@+id/addproduct"
+            android:layout_row="15"
+            android:layout_column="1" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="223dp"
+            android:id="@+id/listView"
+            android:layout_row="17"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Order"
+            android:id="@+id/SubmitOrder"
+            android:layout_row="18"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal" />
+    </GridLayout>
 </LinearLayout>

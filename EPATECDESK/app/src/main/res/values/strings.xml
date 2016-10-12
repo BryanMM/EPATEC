@@ -27,4 +27,5 @@
     <string name="phone">Telephone number</string>
     <string name="Register">Register</string>
     <string name="alclient">Already a client?</string>
+    <string name="sub">Subsidiary</string>
 </resources>
